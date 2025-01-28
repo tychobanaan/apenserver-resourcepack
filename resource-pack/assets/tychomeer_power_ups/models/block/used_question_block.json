@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "tychomeer_power_ups:block/used_question_block"
-  }
-}
