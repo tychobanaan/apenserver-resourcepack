@@ -18,8 +18,10 @@ jobs:
         # Folder to be zipped
         FOLDER="resource-pack"
 
-        # Create the zip file with only the folder's content
-        zip -r resource-pack.zip $FOLDER/*
+        # Change to the folder and zip its content only
+        cd $FOLDER
+        zip -r ../resource-pack.zip .
+        cd ..
 
     - name: Check if the zip file has changed
       id: check_diff
