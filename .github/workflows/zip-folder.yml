@@ -15,26 +15,33 @@ jobs:
 
     - name: Create a zip of the resource-pack folder
       run: |
-        # Folder die gezipt wordt
+        # Folder to be zipped
         FOLDER="resource-pack"
-        
-        zip -r resource-pack.zip $FOLDER
+        zip -r -X resource-pack.zip $FOLDER
 
     - name: Check if the zip file has changed
+      id: check_diff
       run: |
-        # Controleer of de zip is veranderd
-        if git diff --exit-code resource-pack.zip; then
-          echo "No changes to the zip file. Skipping commit and push."
-          exit 0
+        if [[ -f resource-pack.zip ]] && git ls-files --error-unmatch resource-pack.zip > /dev/null 2>&1; then
+          if git show HEAD:resource-pack.zip | cmp -s - resource-pack.zip; then
+            echo "No changes to the zip file. Skipping commit and push."
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
         fi
+        echo "changed=true" >> $GITHUB_OUTPUT
 
     - name: Commit and push the zip file to the repository
+      if: steps.check_diff.outputs.changed == 'true'
       run: |
-        # Configureer git voor de push
-        git config --global user.name "{{ secrets.CI_USER_NAME }}"
-        git config --global user.email "{{ secrets.CI_USER_EMAIL }}"
+        # Configure git with CI-provided username and email
+        git config --global user.name "${{ secrets.CI_USER_NAME }}"
+        git config --global user.email "${{ secrets.CI_USER_EMAIL }}"
 
-        # Voeg het zip-bestand toe aan de repository
+        # Set the correct remote URL with token
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
+        # Add the zip file to the repository
         git add resource-pack.zip
         git commit -m "Add/Update resource-pack.zip"
         git push origin main
