@@ -13,6 +13,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Remove existing zip file (if exists)
+      run: |
+        # Verwijder de bestaande zip file om ervoor te zorgen dat oude bestanden niet blijven bestaan
+        if [ -f resource-pack.zip ]; then
+          rm resource-pack.zip
+        fi
+
     - name: Create a zip of the resource-pack folder content
       run: |
         # Folder to be zipped
