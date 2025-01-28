@@ -8,17 +8,21 @@ on:
 jobs:
   zip-folder:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Create a zip of the resource-pack folder
+    - name: Create a zip of the resource-pack folder content
       run: |
         # Folder to be zipped
         FOLDER="resource-pack"
-        zip -r -X resource-pack.zip $FOLDER
 
+        # Create the zip file with only the folder's content
+        cd $FOLDER
+        zip -r ../resource-pack.zip .
+        cd ..
+    
     - name: Check if the zip file has changed
       id: check_diff
       run: |
@@ -34,9 +38,9 @@ jobs:
     - name: Commit and push the zip file to the repository
       if: steps.check_diff.outputs.changed == 'true'
       run: |
-        # Configure git with CI-provided username and email
-        git config --global user.name "${{ secrets.CI_USER_NAME }}"
-        git config --global user.email "${{ secrets.CI_USER_EMAIL }}"
+        # Configure git with username and email
+        git config --global user.name "${{ secrets.CI_USER_NAME || 'github-actions' }}"
+        git config --global user.email "${{ secrets.CI_USER_EMAIL || 'github-actions[bot]@users.noreply.github.com' }}"
 
         # Set the correct remote URL with token
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
