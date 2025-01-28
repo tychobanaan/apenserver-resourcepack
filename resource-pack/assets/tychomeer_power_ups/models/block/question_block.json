@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "tychomeer_power_ups:block/question_block_top",
+    "side": "tychomeer_power_ups:block/question_block"
+  }
+}

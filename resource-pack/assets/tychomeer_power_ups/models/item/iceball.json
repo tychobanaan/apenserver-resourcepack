@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tychomeer_power_ups:item/iceball"
+  }
+}
