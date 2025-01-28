@@ -1,0 +1,28 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+	  	"layer0": "custom:item/goat_horn/fluit"
+	},
+	"display": {
+		"thirdperson_righthand": {
+            		"rotation": [ -92, 2, -163 ],
+            		"translation": [ 0, 0, 0 ],
+            		"scale": [ 0.78, 0.78, 0.78 ]
+        	},
+        	"thirdperson_lefthand": {
+            		"rotation": [ -92, 2, 107 ],
+            		"translation": [ 0, 0, 0 ],
+            		"scale": [ 0.78, 0.78, 0.78 ]
+        	},
+        	"firstperson_righthand": {
+            		"rotation": [ 0, -90, 25 ],
+            		"translation": [ 0, -2, 0 ],
+            		"scale": [ 1, 1, 1 ]
+        	},
+        	"firstperson_lefthand": {
+            		"rotation": [ 0, 90, -25 ],
+            		"translation": [ 0, -2, 0 ],
+            		"scale": [ 1, 1, 1 ]
+        	}
+    	}
+}
