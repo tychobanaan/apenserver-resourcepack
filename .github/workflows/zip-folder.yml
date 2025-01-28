@@ -19,10 +19,8 @@ jobs:
         FOLDER="resource-pack"
 
         # Create the zip file with only the folder's content
-        cd $FOLDER
-        zip -r ../resource-pack.zip .
-        cd ..
-    
+        zip -r resource-pack.zip $FOLDER/*
+
     - name: Check if the zip file has changed
       id: check_diff
       run: |
