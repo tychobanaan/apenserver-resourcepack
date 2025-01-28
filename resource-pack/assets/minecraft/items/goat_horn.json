@@ -1,0 +1,21 @@
+{
+    "model": {
+        "type": "range_dispatch",
+        "property": "custom_model_data",
+        "fallback": {
+            "type": "minecraft:condition",
+            "on_false": {
+                "type": "minecraft:model",
+                "model": "minecraft:item/goat_horn"
+            },
+            "on_true": {
+                "type": "minecraft:model",
+                "model": "minecraft:item/tooting_goat_horn"
+            },
+            "property": "minecraft:using_item"
+        },
+        "entries": [
+            {"threshold": 1, "model": {"type": "model", "model": "custom:item/goat_horn/fluit"}}
+        ]
+    }
+}
