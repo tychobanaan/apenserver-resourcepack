@@ -1,0 +1,42 @@
+name: Create and Upload Zip
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  zip-folder:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Create a zip of the resource-pack folder
+      run: |
+        # Folder die gezipt wordt
+        FOLDER="resource-pack"
+        
+        zip -r resource-pack.zip $FOLDER
+
+    - name: Check if the zip file has changed
+      run: |
+        # Controleer of de zip is veranderd
+        if git diff --exit-code resource-pack.zip; then
+          echo "No changes to the zip file. Skipping commit and push."
+          exit 0
+        fi
+
+    - name: Commit and push the zip file to the repository
+      run: |
+        # Configureer git voor de push
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+
+        # Voeg het zip-bestand toe aan de repository
+        git add resource-pack.zip
+        git commit -m "Add/Update resource-pack.zip"
+        git push origin main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
