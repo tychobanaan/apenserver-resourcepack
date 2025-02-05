@@ -60,10 +60,11 @@
             {"threshold": 51, "model": {"type": "model", "model": "custom:item/mario/power_ups/mega_mushroom"}},
             {"threshold": 52, "model": {"type": "model", "model": "custom:item/ice"}},
             {"threshold": 53, "model": {"type": "model", "model": "custom:item/schilderijen/schilderij9"}},
+            {"threshold": 54, "model": {"type": "model", "model": "custom:item/schilderijen/schilderij10"}},
 
-            {"threshold": 54, "model": {"type": "model", "model": "custom:item/molens/molen"}},
-            {"threshold": 55, "model": {"type": "model", "model": "custom:item/molens/windmolen"}},
-            {"threshold": 56, "model": {"type": "model", "model": "custom:item/molens/wipmolens/rood"}}
+            {"threshold": 55, "model": {"type": "model", "model": "custom:item/molens/molen"}},
+            {"threshold": 56, "model": {"type": "model", "model": "custom:item/molens/windmolen"}},
+            {"threshold": 57, "model": {"type": "model", "model": "custom:item/molens/wipmolens/rood"}}
         ]
     }
 }
